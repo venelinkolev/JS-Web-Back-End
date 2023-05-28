@@ -1,0 +1,51 @@
+[
+ {
+  "_id": "dwwliwbe4li48ayds",
+  "name": "Cube 3x3",
+  "description": "Nice Cube!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN0hsbM4KrA3DRErYF42gLzXfxocP2swaoRg&usqp=CAU",
+  "difficultyLevel": "3"
+ },
+ {
+  "_id": "ddfliwbe4li48ay11",
+  "name": "Cube 4x4",
+  "description": "Hard Cube!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Gzo0_4SCr_CCSGThPeNfmu-IugghOvfbXA&usqp=CAU",
+  "difficultyLevel": "4"
+ },
+ {
+  "_id": "ddfli55e4li48ayds",
+  "name": "Cube 5x5",
+  "description": "Exelent!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsYJ-q61-wLM9dwNvniMLY6Ls6MeXiofhblw&usqp=CAU",
+  "difficultyLevel": "5"
+ },
+ {
+  "_id": "ddfliwbe4li424yds",
+  "name": "Cube 6x6",
+  "description": "Very Hard!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEtXeAwfmQs7VknjCoZkGp5C53TCJ9tejiLg&usqp=CAU",
+  "difficultyLevel": "6"
+ },
+ {
+  "_id": "ddfliwbe4li48ayds",
+  "name": "Cube 7x7",
+  "description": "Very very GOOD!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPO3yrXjheROoC11Qxg5Ts5KboGg5FkrPPww&usqp=CAU",
+  "difficultyLevel": "6"
+ },
+ {
+  "_id": "ddfliwfgli4bsxv8",
+  "name": "Cube 2x2 Classic",
+  "description": "Classic!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe7T8Hg7IwFlA2Rw-zr8wIS2h0PY881xcP5A&usqp=CAU",
+  "difficultyLevel": "2"
+ },
+ {
+  "_id": "ddfliwbxoli4epi8a",
+  "name": "Logic Mirror Cube",
+  "description": "Funny!",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8h0pObtKC8LsWMtzX0Rsef91YHfqJQ6m5NQ&usqp=CAU",
+  "difficultyLevel": "4"
+ }
+]
