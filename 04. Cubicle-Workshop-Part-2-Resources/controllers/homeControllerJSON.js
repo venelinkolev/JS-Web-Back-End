@@ -1,14 +1,18 @@
 const router = require('express').Router();
-const Cube = require('../models/Cube');
+const { read } = require('../util/fileManage');
 
 router.get('/', async (req, res) => {
-  const cubes = await Cube.find({}).lean();
-  //console.log(cube);
+  const search = req.query;
+  //console.log(search);
+  const cubes = await read(search);
+
   res.render('home', {
     title: 'Cubicle',
     cubes,
   });
 });
+
+router.post('/', (req, res) => {});
 
 router.get('/about', (req, res) => {
   res.render('about', {

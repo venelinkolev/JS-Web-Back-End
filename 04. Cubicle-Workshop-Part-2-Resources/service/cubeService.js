@@ -1,30 +1,21 @@
-const fs = require('../util/fileManage');
-const uniqId = require('uniqid');
+const Cube = require('../models/Cube');
 
 async function create(cube) {
-  const database = await fs.read();
-
   const { name, description, imageUrl, difficultyLevel } = cube;
-  //console.log(name, description, imageUrl, difficultyLevel);
-
-  const idCube = uniqId();
-
-  database.push({
-    _id: idCube,
-    name,
-    description,
-    imageUrl,
-    difficultyLevel,
-  });
-
-  await fs.write(database);
+  
+const newCube = await Cube.create({
+  name,
+  description,
+  imageUrl,
+  difficultyLevel,
+});
+console.log(newCube);
 }
 
 async function details(id) {
-  const database = await fs.read();
+  const cube = await Cube.findById(id).lean();
 
-  const cube = database.find((cube) => cube._id == id);
-
+  //console.log('First', cube);
   return cube;
 }
 

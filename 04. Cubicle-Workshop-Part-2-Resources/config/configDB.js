@@ -11,6 +11,8 @@ async function connectDB() {
 
     console.log('DB connected ...');
 /*
+    --Transfer data from JSON file--
+    -----------------------------------------
     const database = await readData();
     //console.log(database);
 
@@ -19,6 +21,7 @@ async function connectDB() {
     }
 
     database.forEach(cube => newCube(cube));
+    -----------------------------------------
     */
 }
 module.exports = { connectDB };
