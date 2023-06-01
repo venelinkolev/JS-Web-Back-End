@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "6478f63d010b58f3f794f1e5"
+  },
+  "name": "Rubik Case",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEohFSjdj9jkYXqm15EO7c7TQiEGtgRMKaRQ&usqp=CAU",
+  "description": "Beautyful case!",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64790934297f0c144813b018"
+  },
+  "name": "Apple G4 Cube Case",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIvJ5ltUJ5xtUJLiVodhM51lQeQo9R00UQw&usqp=CAU",
+  "description": "Apple",
+  "__v": 0
+}]

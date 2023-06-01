@@ -3,7 +3,7 @@ const Cube = require('../models/Cube');
 
 router.get('/', async (req, res) => {
   const cubes = await Cube.find({}).lean();
-  //console.log(cube);
+  console.log(cubes);
   res.render('home', {
     title: 'Cubicle',
     cubes,
