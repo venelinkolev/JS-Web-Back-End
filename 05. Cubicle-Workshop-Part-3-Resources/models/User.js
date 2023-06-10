@@ -9,12 +9,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  cubes: [
-    {
-      type: Types.ObjectId,
-      ref: 'Cube',
-    },
-  ],
+  // cubes: [
+  //   {
+  //     type: Types.ObjectId,
+  //     ref: 'Cube',
+  //   },
+  // ],
 });
 
 const User = model('User', userSchema);
