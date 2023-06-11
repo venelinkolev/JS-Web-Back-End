@@ -3,7 +3,7 @@ const Cube = require('../models/Cube');
 const searchCube = require('../util/searchManage');
 
 router.get('/', async (req, res) => {
-  //console.log(req.query);
+  //console.log(req.user);
   const { search, from, to } = req.query;
 
   const cubes = await searchCube(search, from, to);
@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
   res.render('home', {
     title: 'Cubicle',
     cubes,
+    user: req.user,
   });
 });
 
