@@ -1,8 +1,15 @@
 const router = require('express').Router();
-const { create, details, getCube, deleteCube, updateCube } = require('../service/cubeService');
+const { isAuthenticated } = require('../middlewares/isAuthenticated');
+const {
+  create,
+  details,
+  getCube,
+  deleteCube,
+  updateCube,
+} = require('../service/cubeService');
 const { optionsViewData } = require('../util/optionsViewData');
 
-router.get('/create', (req, res) => {
+router.get('/create', isAuthenticated, (req, res) => {
   res.render('create', {
     title: 'Create Cube Page',
   });
@@ -17,13 +24,16 @@ router.post('/create', (req, res) => {
 
 router.get('/:idCube/details', async (req, res) => {
   const id = req.params.idCube;
-  const cube = await details(id);
-  
-  //console.log('Second', cube.accessories);
-  
+  const cube = await details(id).lean();
+
+  const isCreator = cube.creatorId?.toString() === req.user.id;
+
+  //console.log(cube.creatorId.toString(), req.user.id);
+
   res.render('details', {
     title: 'Cubicle',
     cube,
+    isCreator,
   });
 });
 

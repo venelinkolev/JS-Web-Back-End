@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   res.render('home', {
     title: 'Cubicle',
     cubes,
-    user: req.user,
+    //user: req.user,
   });
 });
 

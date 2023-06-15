@@ -30,7 +30,7 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => {
   let payload = null;
-    
+
   try {
     payload = await findUser(req.body);
   } catch (err) {
@@ -39,8 +39,8 @@ router.post('/login', async (req, res) => {
     });
   }
 
-  jwt.sign(payload, SECRET, { expiresIn: '2d'}, (err, token) => {
-    if(err) {
+  jwt.sign(payload, SECRET, { expiresIn: '2d' }, (err, token) => {
+    if (err) {
       return res.render('login', {
         error: err.message,
       });
@@ -49,10 +49,11 @@ router.post('/login', async (req, res) => {
     res.cookie('user', token, { httpOnly: true });
     res.redirect('/');
   });
-  
 });
 
 router.get('/logout', (req, res) => {
-  res.render('register');
+  res.clearCookie('user');
+
+  res.redirect('/');
 });
 module.exports = router;

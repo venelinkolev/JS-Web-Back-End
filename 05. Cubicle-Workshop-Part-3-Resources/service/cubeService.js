@@ -13,8 +13,8 @@ async function create(cube, creatorId) {
   console.log(newCube);
 }
 
-async function  details(id) {
-  const cube = await Cube.findById(id).populate('accessories').lean();
+function details(id) {
+  const cube = Cube.findById(id).populate('accessories');
 
   //console.log('First', cube);
   return cube;
