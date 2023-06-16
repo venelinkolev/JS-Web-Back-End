@@ -34,8 +34,8 @@ async function deleteGame(id) {
   return await Game.findByIdAndDelete(id);
 }
 
-async function updateGame(id, cubeData) {
-  return await Game.findByIdAndUpdate(id, cubeData);
+async function updateGame(id, gameData) {
+  return await Game.findByIdAndUpdate(id, gameData);
 }
 
 module.exports = {

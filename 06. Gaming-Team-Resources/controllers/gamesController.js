@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { isAuthenticated } = require('../middlewares/isAuthenticated');
-const { create, getAllGames, getGame } = require('../service/gameService');
+const { create, getAllGames, getGame, updateGame, deleteGame } = require('../service/gameService');
 
 const { optionsViewData } = require('../util/optionsViewData');
 
@@ -9,7 +9,8 @@ router.get('/catalog', async (req, res) => {
   try {
     games = await getAllGames();
   } catch (err) {
-    return res.render('create', {
+    return res.render('catalog', {
+      title: 'Game Catalog',
       error: err.message,
     });
   }
@@ -32,6 +33,7 @@ router.post('/create', async (req, res) => {
     await create(req.body, creatorId);
   } catch (err) {
     return res.render('create', {
+      title: 'Create Game',
       error: err.message,
     });
   }
@@ -46,14 +48,84 @@ router.get('/:gameId/details', async (req, res) => {
     game = await getGame(gameId);
   } catch (err) {
     return res.render('details', {
+      titel: 'Details Game',
       error: err.message,
     });
   }
+  
+  const isCreator = game.creatorId.toString() == req.user?.id;
+  //console.log(isCreator, '-----', game.creatorId.toString(), '--', req.user?.id);
 
   res.render('details', {
     title: `${game.name} Details`,
     game,
+    isCreator,
   });
+});
+
+router.get('/:gameId/edit', async (req, res) => {
+  const options = [
+    "-------",
+    "PC",
+    "Nintendo",
+    "PS4",
+    "PS5",
+    "XBOX" 
+  ];
+
+  const gameId = req.params.gameId;
+  let game = null;
+  try {
+    game = await getGame(gameId);
+  } catch (err) {
+    return res.render('details', {
+      titel: 'Details Game',
+      error: err.message,
+    });
+  }
+
+  function option(platform) {
+    return options.map((x) => ({
+      value: x,
+      selected: platform == x ? 'selected' : '',
+    }));
+  }
+  
+  res.render('edit', {
+    title: 'Edit Game',
+    game,
+    option: option(game.platform), 
+  })
+});
+
+router.post('/:gameId/edit', async (req, res) => {
+  const gameId = req.params.gameId;
+  const gameData = req.body;
+
+  try {
+    await updateGame(gameId, gameData);
+  } catch (err) {
+    return res.render('edit', {
+      titel: 'Edit Game',
+      error: err.message,
+    });
+  }
+
+  res.redirect(`/games/${gameId}/details`);
+});
+
+router.get('/:gameId/delete', async (req, res) => {
+  const gameId = req.params.gameId;
+  try {
+    await deleteGame(gameId);
+  } catch (err) {
+    return res.render('details', {
+      titel: 'Details Game',
+      error: err.message,
+    });
+  }
+
+  res.redirect('/games/catalog');
 });
 
 module.exports = router;

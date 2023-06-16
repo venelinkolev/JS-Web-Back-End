@@ -14,6 +14,7 @@ router.post('/register', async (req, res) => {
     await createUser(req.body);
   } catch (err) {
     return res.render('register', {
+      title: 'Register Form',
       error: err.message,
       user: {
         username: req.body.username,
@@ -38,6 +39,7 @@ router.post('/login', async (req, res) => {
     payload = await findUser(req.body);
   } catch (err) {
     return res.render('login', {
+      title: 'Login Form',
       error: err.message,
     });
   }
@@ -45,6 +47,7 @@ router.post('/login', async (req, res) => {
   jwt.sign(payload, SECRET, { expiresIn: '2d' }, (err, token) => {
     if (err) {
       return res.render('login', {
+        title: 'Login Form',
         error: err.message,
       });
     }

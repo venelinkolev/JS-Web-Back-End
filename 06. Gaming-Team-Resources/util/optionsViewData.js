@@ -1,11 +1,19 @@
 function optionsViewData(difficultyLevel) {
+    // const titles = [
+    //     `Very Easy`,
+    //     `Easy`,
+    //     `Medium (Standard 3x3)`,
+    //     `Intermediate`,
+    //     `Expert`,
+    //     `Hardcore`, 
+    // ];
     const titles = [
-        `Very Easy`,
-        `Easy`,
-        `Medium (Standard 3x3)`,
-        `Intermediate`,
-        `Expert`,
-        `Hardcore`, 
+        "-------",
+        "PC",
+        "Nintendo",
+        "PS4",
+        "PS5",
+        "XBOX" 
     ];
 
     const options = titles.map((title, index) => ({
