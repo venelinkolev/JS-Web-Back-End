@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { createUser, findUser } = require('../service/userService');
 const jwt = require('jsonwebtoken');
 const { SECRET } = require('../util/secret');
+const { extractErrorMessages } = require('../util/errorHelper');
 
 router.get('/register', (req, res) => {
   res.render('register', {
@@ -15,7 +16,7 @@ router.post('/register', async (req, res) => {
   } catch (err) {
     return res.render('register', {
       title: 'Register Form',
-      error: err.message,
+      error: extractErrorMessages(err),
       user: {
         username: req.body.username,
         email: req.body.email,
@@ -40,7 +41,7 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     return res.render('login', {
       title: 'Login Form',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
 
@@ -48,7 +49,7 @@ router.post('/login', async (req, res) => {
     if (err) {
       return res.render('login', {
         title: 'Login Form',
-        error: err.message,
+        error: extractErrorMessages(err),
       });
     }
 

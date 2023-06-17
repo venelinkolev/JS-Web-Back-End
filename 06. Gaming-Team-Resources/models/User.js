@@ -11,19 +11,20 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Email is required!'],
+    minLength: [10, 'Email i too short!'],
     unique: true,
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Password is required!'],
     // validate: {
     //   validator: function (value) {
     //     return /^[A-za-z0-9]+$/.test(value);
     //   },
     //   message: 'Invalid password characters!',
     // },
-    minLength: 3,
+    minLength: [4, 'Password must by four characters long or more!'],
   },
   // cubes: [
   //   {

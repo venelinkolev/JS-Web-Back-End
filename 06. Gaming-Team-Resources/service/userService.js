@@ -4,6 +4,9 @@ const { hash, valid, SECRET } = require('../util/secret');
 async function createUser(userData) {
   const { username, email, password, rePassword } = userData;
 
+  if (password.length < 4) {
+    throw new Error('Password is too short!');
+  }
   if (password != rePassword) {
     throw new Error('Password do not match');
   }

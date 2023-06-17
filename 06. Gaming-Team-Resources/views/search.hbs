@@ -1,15 +1,22 @@
 <main id='search'>
+  {{#if error}}
+         <div>
+            <div class="errorContainer">
+                <p>{{error}}</p>
+            </div>
+        </div> 
+        {{/if}}
   <section class='game-search'>
     <h1>Search</h1>
 
-    <form class='search-form' action='#' method=''>
+    <form class='search-form' action='/games/search' method='GET'>
       <input
         type='text'
         class='search-game'
-        name=''
+        name='search'
         placeholder='Search here...'
       />
-      <select id='platform' name=''>
+      <select id='platform' name='platform'>
         <option value=''>-------</option>
         <option value='PC'>PC</option>
         <option value='Nintendo'>Nintendo</option>
@@ -20,26 +27,30 @@
       <button type='submit' class='btn-search'>Search</button>
     </form>
 
+    {{#if games}}
     <div class='search-result'>
       <div class='search-list'>
+        {{#each games}}
         <div class='game'>
           <div class='game-img'>
-            <img src='./static/images/witcher-3.jpg' />
+            <img src='{{imageUrl}}' />
           </div>
           <div class='game-info'>
-            <h1>The Witcher 3</h1>
-            <p><span>Platform: </span>PC</p>
-            <p><span>Ganre: </span>RPG</p>
-            <p><span>Price: </span>$23</p>
+            <h1>{{name}}</h1>
+            <p><span>Platform: </span>{{platform}}</p>
+            <p><span>Ganre: </span>{{genre}}</p>
+            <p><span>Price: </span>${{price}}</p>
           </div>
 
-          <a href='#' class='btn-details'>Details</a>
+          <a href='/games/{{_id}}/details' class='btn-details'>Details</a>
         </div>
+        {{/each}}
       </div>
     </div>
-
-    <!-- <div class="no-match">
+    {{else}}
+    <div class="no-match">
                 <p>No match was found!</p>
-            </div> -->
+            </div>
+    {{/if}}
   </section>
 </main>

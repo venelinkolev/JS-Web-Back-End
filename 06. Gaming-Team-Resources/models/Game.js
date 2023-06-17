@@ -16,23 +16,27 @@ const gameSchema = new Schema({
   name: {
     type: String,
     required: true,
+    minLength: 4,
   },
   imageUrl: {
     type: String,
     required: true,
+    match: [/^https?:\/\//, 'Is not valid URL'], 
   },
   price: {
     type: String,
     required: true,
+    min: 0,
   },
   description: {
     type: String,
     required: true,
-    maxLength: 50,
+    minLength: 10,
   },
   genre: {
     type: String,
     required: true,
+    minLength: 2,
   },
   //platform: string (required; one of the following: "PC", "Nintendo", "PS4", "PS5", "XBOX")
   platform: {

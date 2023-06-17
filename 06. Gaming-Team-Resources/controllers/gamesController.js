@@ -8,8 +8,10 @@ const {
   deleteGame,
   buyGame,
 } = require('../service/gameService');
+const { extractErrorMessages } = require('../util/errorHelper');
 
 const { optionsViewData } = require('../util/optionsViewData');
+const searchGames = require('../util/searchManage');
 
 router.get('/catalog', async (req, res) => {
   let games = null;
@@ -18,7 +20,7 @@ router.get('/catalog', async (req, res) => {
   } catch (err) {
     return res.render('catalog', {
       title: 'Game Catalog',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
   res.render('catalog', {
@@ -35,13 +37,13 @@ router.get('/create', (req, res) => {
 
 router.post('/create', async (req, res) => {
   const creatorId = req.user.id;
-  console.log(creatorId);
+  //console.log(creatorId);
   try {
     await create(req.body, creatorId);
   } catch (err) {
     return res.render('create', {
       title: 'Create Game',
-      error: err.message,
+      error: extractErrorMessages(err)[0],
     });
   }
 
@@ -50,14 +52,14 @@ router.post('/create', async (req, res) => {
 
 router.get('/:gameId/details', async (req, res) => {
   const gameId = req.params.gameId;
-  const userId = req.user.id;
+  const userId = req.user?.id;
   let game = null;
   try {
     game = await getGame(gameId);
   } catch (err) {
     return res.render('details', {
       titel: 'Details Game',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
 
@@ -89,7 +91,7 @@ router.get('/:gameId/edit', async (req, res) => {
   } catch (err) {
     return res.render('details', {
       titel: 'Details Game',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
 
@@ -116,7 +118,7 @@ router.post('/:gameId/edit', async (req, res) => {
   } catch (err) {
     return res.render('edit', {
       titel: 'Edit Game',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
 
@@ -130,7 +132,7 @@ router.get('/:gameId/delete', async (req, res) => {
   } catch (err) {
     return res.render('details', {
       titel: 'Details Game',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
 
@@ -146,13 +148,31 @@ router.get('/:gameId/buy', async (req, res) => {
   } catch (err) {
     return res.render('details', {
       titel: 'Details Game',
-      error: err.message,
+      error: extractErrorMessages(err),
     });
   }
 
   //console.log(gameId, '---', ownewId);
 
   res.redirect(`/games/${gameId}/details`);
+});
+
+router.get('/search', async (req, res) => {
+  const { search, platform } = req.query;
+  //console.log(search, platform);
+  let games = null;
+  try {
+    games = await searchGames(search, platform);
+  } catch (err) {
+    return res.render('search', {
+      titel: 'Search Game',
+      error: extractErrorMessages(err),
+    });
+  }
+  res.render('search', {
+    title: 'Search Game',
+    games,
+  });
 });
 
 module.exports = router;
