@@ -38,6 +38,13 @@ async function updateGame(id, gameData) {
   return await Game.findByIdAndUpdate(id, gameData);
 }
 
+async function buyGame(gameId, ownewId) {
+  const currnetGame = await Game.findById(gameId);
+  currnetGame.boughtBy.push(ownewId);
+
+  currnetGame.save();
+}
+
 module.exports = {
   create,
   details,
@@ -45,4 +52,5 @@ module.exports = {
   getGame,
   deleteGame,
   updateGame,
+  buyGame,
 };
