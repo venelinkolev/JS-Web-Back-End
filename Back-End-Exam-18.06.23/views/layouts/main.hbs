@@ -2,35 +2,48 @@
 
   <head>
     <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' href='../../static/css/styles.css' />
     <title>{{title}}</title>
-    <link href='../../static/css/site.css' type='text/css' rel='stylesheet' />
-    <link
-      rel='shortcut icon'
-      type='image/x-icon'
-      href='../../static/images/favicon.png'
-    />
   </head>
 
   <body>
-    <div class='container'>
+    {{#if error}}
+      <div>
+        <div class='errorContainer'>
+          <p>{{error}}</p>
+        </div>
+      </div>
+    {{/if}}
+    <div id='wrapper'>
       <header>
-        <ul>
-          <li><img class='logo' src='../../static/images/logo.png' /></li>
-          <li><a href='/'>Browse</a></li>
-          <li><a href='/about'>About</a></li>
-          {{#if isAuthUser}}
-            <li><a href='/cubes/create'>Add a Cube</a></li>
-            <li><a href='/accessory/create'>Add Accessory</a></li>
-            <li><a href='/auth/logout'>Logout</a></li>
-          {{else}}
-            <li><a href='/auth/login'>Login</a></li>
-            <li><a href='/auth/register'>Register</a></li>
-          {{/if}}
-        </ul>
+        <!-- Navigation -->
+        <nav>
+          <div>
+            <a href='/'>Home</a>
+            <a href='/animals/dashboard'>Dashboard</a>
+            <a href='/animals/search'>Search</a>
+          </div>
+
+          <!-- Logged-in users -->
+          <div class='user'>
+            <a href='/animals/create'>Add Animal</a>
+            <a href='/auth/logout'>Logout</a>
+          </div>
+
+          <!-- Guest users -->
+          <div class='guest'>
+            <a href='/auth/login'>Login</a>
+            <a href='/auth/register'>Register</a>
+          </div>
+        </nav>
       </header>
       {{{body}}}
+      <footer>
+        <p>@Friendly World</p>
+      </footer>
     </div>
-    <footer>@Cubicle: Exercise for Express.js and Handlebars</footer>
   </body>
 
 </html>
