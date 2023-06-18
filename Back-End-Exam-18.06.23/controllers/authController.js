@@ -15,11 +15,11 @@ router.post('/register', async (req, res) => {
   } catch (err) {
     return res.render('register', {
       error: err.message,
-      user: req.body.username,
+      user: req.body.email,
     });
   }
 
-  res.redirect('/auth/login');
+  res.redirect('/');
 });
 
 router.get('/login', (req, res) => {

@@ -22,6 +22,13 @@ const animalSchema = new Schema({
     required: [true, 'Name is required!'],
     minLength: 2,
   },
+  //The years are required and should be a number between 1 and 100.
+  years: {
+    type: Number,
+    required: [true, 'Years is required!'],
+    min: [1, 'The years should be a number between 1 and 100!'],
+    max: [100, 'The years should be a number between 1 and 100!'],
+  },
   //The kind is required and should be at least 3 characters.
   kind: {
     type: String,
@@ -34,15 +41,8 @@ const animalSchema = new Schema({
     required: [true, 'Image URL is required!'],
     match: [/^https?:\/\//, 'Is not valid URL!'],
   },
-  //The years are required and should be a number between 1 and 100.
-  years: {
-    type: Number,
-    required: [true, 'Years is required!'],
-    min: [1, 'The years should be a number between 1 and 100!'],
-    max: [100, 'The years should be a number between 1 and 100!'],
-  },
   //The need is required and should be at least 3 and no longer than 20 characters.
-  need: {
+  needs: {
     type: String,
     required: [true, 'Need is required!'],
     minLength: [
@@ -52,19 +52,6 @@ const animalSchema = new Schema({
     maxLength: [
       20,
       'The need should be at least 3 and no longer than 20 characters',
-    ],
-  },
-  //The description is required and should be at least 5 and no longer than 50 characters.
-  description: {
-    type: String,
-    required: [true, 'Description is required!'],
-    minLength: [
-      5,
-      'The description should be at least 5 and no longer than 50 characters.',
-    ],
-    maxLength: [
-      50,
-      'The description should be at least 5 and no longer than 50 characters.',
     ],
   },
   //The location is required and should be at least 5 and no longer than 15 characters.
@@ -80,12 +67,29 @@ const animalSchema = new Schema({
       'The location should be at least 5 and no longer than 15 characters.',
     ],
   },
+  //The description is required and should be at least 5 and no longer than 50 characters.
+  description: {
+    type: String,
+    required: [true, 'Description is required!'],
+    minLength: [
+      5,
+      'The description should be at least 5 and no longer than 50 characters.',
+    ],
+    maxLength: [
+      50,
+      'The description should be at least 5 and no longer than 50 characters.',
+    ],
+  },
   donation: [
     {
       type: Types.ObjectId,
       ref: 'User',
     },
   ],
+  owner: {
+    type: Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 const Animal = model('Animal', animalSchema);

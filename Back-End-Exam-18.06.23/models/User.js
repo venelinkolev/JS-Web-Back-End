@@ -6,7 +6,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Email is required!'],
     minLength: [10, 'Email is too short!'],
-    unique: [true, 'Email is already exist!'],
+    //unique: [true, 'Email is already exist!'],
   },
   password: {
     type: String,
